@@ -1,6 +1,6 @@
 import cdk = require("@aws-cdk/cdk");
 
-import { User, Policy, CfnAccessKey } from "@aws-cdk/aws-iam";
+import { User, Policy, CfnAccessKey, Role, ServicePrincipal } from "@aws-cdk/aws-iam";
 import { CfnOutput } from "@aws-cdk/cdk";
 export class ServerlessCourseStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -18,5 +18,13 @@ export class ServerlessCourseStack extends cdk.Stack {
     new CfnOutput(this, "secretAccessKey", {
       value: accessKey.accessKeySecretAccessKey
     });
+
+
+    const role = new Role(this, 'ImageResizingLambdaRole', {
+      assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
+      roleName: 'lambda_s3_execution',
+    });
+    role.attachManagedPolicy('arn:aws:iam::aws:policy/AmazonS3FullAccess');
+
   }
 }
