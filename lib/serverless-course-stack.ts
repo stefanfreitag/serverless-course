@@ -1,6 +1,7 @@
 import cdk = require("@aws-cdk/cdk");
 
 import { User, Policy, CfnAccessKey, Role, ServicePrincipal } from "@aws-cdk/aws-iam";
+import { Bucket, EventType } from '@aws-cdk/aws-s3';
 import { CfnOutput } from "@aws-cdk/cdk";
 export class ServerlessCourseStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -26,5 +27,16 @@ export class ServerlessCourseStack extends cdk.Stack {
     });
     role.attachManagedPolicy('arn:aws:iam::aws:policy/AmazonS3FullAccess');
 
+    const srcBucket = new Bucket(this,'ImageResizeSourceBucket', {
+        bucketName: 'de.freitag.stefan.imageresize'
+    });
+    // TODO: srcBucket.addEventNotification(EventType.ObjectCreatedPut, )
+
+    const destinationBucket = new Bucket(this,'ImageResizeDestinationBucket', {
+      bucketName: 'de.freitag.stefan.imageresize-dest'
+  });
+
   }
+
+
 }
