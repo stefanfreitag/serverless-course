@@ -10,16 +10,16 @@
     "cdk": "cdk"
   },
   "devDependencies": {
-    "@types/node": "13.13.4",
-    "aws-cdk": "^1.36.1",
-    "ts-node": "^8.9.1",
+    "@types/node": "13.13.5",
+    "aws-cdk": "^1.38.0",
+    "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@aws-cdk/aws-dynamodb": "^1.36.1",
-    "@aws-cdk/aws-iam": "^1.36.1",
-    "@aws-cdk/aws-s3": "^1.36.1",
-    "@aws-cdk/core": "^1.36.1",
+    "@aws-cdk/aws-dynamodb": "^1.38.0",
+    "@aws-cdk/aws-iam": "^1.38.0",
+    "@aws-cdk/aws-s3": "^1.38.0",
+    "@aws-cdk/core": "^1.38.0",
     "source-map-support": "^0.5.19"
   }
 }
